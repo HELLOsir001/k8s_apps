@@ -76,6 +76,8 @@ metadata:
     app: nextcloud
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: nextcloud
@@ -86,7 +88,8 @@ spec:
     spec:
       containers:
         - name: nextcloud
-          image: nextcloud:apache
+          image: nextcloud:35.0.2-apache
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_HOST
               value: "postgres"
